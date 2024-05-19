@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -14,6 +15,17 @@ export default function SignInScreen({ navigation }) {
     email: '',
     password: '',
   });
+
+
+  const handleSubmit = () => {
+    if (!form.email || !form.password) {
+        Alert.alert('Error', 'All fields are required');
+        return;
+    }
+    // Handle form submission, e.g., send data to an API
+    Alert.alert('Success', 'Form submitted successfully');
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <View style={styles.container}>
@@ -25,7 +37,7 @@ export default function SignInScreen({ navigation }) {
 
         <View style={styles.form}>
           <View style={styles.input}>
-            <Text style={styles.inputLabel}>Email address</Text>
+            <Text style={styles.inputLabel}>Địa chỉ email</Text>
 
             <TextInput
               autoCapitalize="none"
@@ -36,11 +48,12 @@ export default function SignInScreen({ navigation }) {
               placeholder="abc123@gmail.com"
               placeholderTextColor="#6b7280"
               style={styles.inputControl}
-              value={form.email} />
+              value={form.email}
+            />
           </View>
 
           <View style={styles.input}>
-            <Text style={styles.inputLabel}>Password</Text>
+            <Text style={styles.inputLabel}>Mật khẩu</Text>
 
             <TextInput
               autoCorrect={false}
@@ -50,27 +63,26 @@ export default function SignInScreen({ navigation }) {
               placeholderTextColor="#6b7280"
               style={styles.inputControl}
               secureTextEntry={true}
-              value={form.password} />
+              value={form.password}
+            />
           </View>
 
           <View style={styles.formAction}>
-            <TouchableOpacity
-              onPress={() => {
-                // handle onPress
-              }}>
+          <TouchableOpacity
+              onPress={handleSubmit}>
               <View style={styles.btn}>
-                <Text style={styles.btnText}>Sign in</Text>
+                <Text style={styles.btnText}>Đăng nhập</Text>
               </View>
             </TouchableOpacity>
           </View>
 
 
-          <Text style={styles.formActionSpacer}>Or continue with</Text>
-
+          <Text style={styles.formActionSpacer}>hoặc tiếp tục với</Text>
           <TouchableOpacity
               onPress={() => {
                 // handle onPress
               }}>
+          
               <View style={styles.btnSecondary}>
                 <MaterialCommunityIcons
                   color="#000"
@@ -89,8 +101,8 @@ export default function SignInScreen({ navigation }) {
                 navigation.navigate('Register');
             }}>
             <Text style={styles.formFooter}>
-              Don't have an account?{' '}
-              <Text style={{  color: '#5548E2' }}>Sign up</Text>
+              Chưa có tài khoản?{' '}
+              <Text style={{  color: '#5548E2' }}>Đăng kí</Text>
             </Text>
           </TouchableOpacity>
         </View>

@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -18,21 +19,22 @@ export default function SignUpScreen({navigation}) {
   });
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'  }}>
+      <ScrollView>
       <View style={styles.container}>
         <KeyboardAwareScrollView>
           <View style={styles.header}>
             
 
-            <Text style={styles.title}>Let's Get Started!</Text>
+            <Text style={styles.title}>Bắt đầu nào!</Text>
 
             <Text style={styles.subtitle}>
-              Fill in the fields below to get started with your new account.
+              Điền đầy đủ thông tin để tạo mới một tài khoản
             </Text>
           </View>
 
           <View style={styles.form}>
             <View style={styles.input}>
-              <Text style={styles.inputLabel}>Full Name</Text>
+              <Text style={styles.inputLabel}>Họ và tên*</Text>
 
               <TextInput
                 clearButtonMode="while-editing"
@@ -44,7 +46,19 @@ export default function SignUpScreen({navigation}) {
             </View>
 
             <View style={styles.input}>
-              <Text style={styles.inputLabel}>Email Address</Text>
+              <Text style={styles.inputLabel}>Số điện thoại*</Text>
+
+              <TextInput
+                clearButtonMode="while-editing"
+                onChangeText={phone => setForm({ ...form, phone })}
+                placeholder="0987654321"
+                placeholderTextColor="#6b7280"
+                style={styles.inputControl}
+                value={form.phone} />
+            </View>
+
+            <View style={styles.input}>
+              <Text style={styles.inputLabel}>Địa chỉ email*</Text>
 
               <TextInput
                 autoCapitalize="none"
@@ -59,7 +73,19 @@ export default function SignUpScreen({navigation}) {
             </View>
 
             <View style={styles.input}>
-              <Text style={styles.inputLabel}>Password</Text>
+              <Text style={styles.inputLabel}>Địa chỉ thường trú*</Text>
+
+              <TextInput
+                clearButtonMode="while-editing"
+                onChangeText={address => setForm({ ...form, address })}
+                placeholder="FPT Uni"
+                placeholderTextColor="#6b7280"
+                style={styles.inputControl}
+                value={form.address} />
+            </View>
+
+            <View style={styles.input}>
+              <Text style={styles.inputLabel}>Mật khẩu*</Text>
 
               <TextInput
                 autoCorrect={false}
@@ -73,7 +99,7 @@ export default function SignUpScreen({navigation}) {
             </View>
 
             <View style={styles.input}>
-              <Text style={styles.inputLabel}>Confirm Password</Text>
+              <Text style={styles.inputLabel}>Xác nhận mật khẩu*</Text>
 
               <TextInput
                 autoCorrect={false}
@@ -94,7 +120,7 @@ export default function SignUpScreen({navigation}) {
                   // handle onPress
                 }}>
                 <View style={styles.btn}>
-                  <Text style={styles.btnText}>Sign Up</Text>
+                  <Text style={styles.btnText}>Đăng kí</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -106,11 +132,12 @@ export default function SignUpScreen({navigation}) {
             navigation.navigate('Login');
           }}>
           <Text style={styles.formFooter}>
-            Already have an account?{' '}
-            <Text style={{ color: '#5548E2'  }}>Sign in</Text>
+            Đã có tài khoản?{' '}
+            <Text style={{ color: '#5548E2'  }}>Đăng nhập</Text>
           </Text>
         </TouchableOpacity>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
