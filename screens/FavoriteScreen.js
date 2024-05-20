@@ -53,44 +53,12 @@ const items = [
 ];
 
 
-export default function ListProductScreen({navigation}) {
+export default function FavoriteScreen({navigation}) {
   
   return (
     <View style={{ flex: 1 }}>
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff', paddingVertical: 24 }}>
         <ScrollView>
-          {/* Search bar */}
-          <View style={{ flexDirection: 'row', marginHorizontal: 13, marginVertical: 15 }}>
-            <TouchableOpacity onPress={() => {
-              navigation.navigate('Home')
-            }}>
-            <Image style={{ marginRight: 10, width: 35, height: 35, marginTop: 8 }} source={require('../assets/arrow_back.png')} />
-            </TouchableOpacity>
-            <View style={{ width: 320, height: 50, backgroundColor: '#E6E6E6', flexDirection: 'row', justifyContent: 'space-between', padding: 16 }}>
-              <Text style={{ fontWeight: '600' }}>20h,08/05/ 2024 - 19h,09/05/2024</Text>
-              <Image style={{ width: 22, height: 22 }} source={require('../assets/search.png')} />
-            </View>
-          </View>
-
-          {/* Category bar */}
-          <ScrollView
-            contentContainerStyle={styles.listContent}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}>
-            {categories.map(({ img, label, color }, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => {
-                  // handle onPress
-                }}>
-                <View style={[styles.tag, { backgroundColor: 'white', borderColor: '#DADADA', borderWidth: 1 }]}>
-                  <Image source={img} style={styles.tagImg} />
-                  <Text style={styles.tagLabel}>{label}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-
           {/* ListCard */}
           <View style={{ paddingHorizontal: 24 }}>
             {items.map(({ img, name, price, stars, reviews, saved }, index) => {
@@ -107,7 +75,7 @@ export default function ListProductScreen({navigation}) {
                           // handle onPress
                         }}>
                         <View style={styles.cardLike}>
-                          <Image source={require('../assets/heart.png')} />
+                          <Image source={require('../assets/heart_red.png')} />
                         </View>
                       </TouchableOpacity>
                     </View>

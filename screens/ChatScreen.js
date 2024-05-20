@@ -108,7 +108,7 @@ export default ChatScreen = () => {
           <View style={styles.rightBlock}>
             <Text style={styles.rightTxt}>{item.msg}</Text>
           </View>
-          <Image source={{ uri: item.image }} style={styles.userPic} />
+          {/* <Image source={{ uri: item.image }} style={styles.userPic} /> */}
         </View>
       )
     }
@@ -118,7 +118,6 @@ export default ChatScreen = () => {
     <View style={{ flex: 1 }}>
       <KeyboardAvoidingView behavior="padding" style={styles.keyboard}>
         <FlatList
-          style={styles.list}
           extraData={messages}
           data={messages}
           keyExtractor={item => {
@@ -182,7 +181,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     padding: 10,
     height: 40,
-    width: width - 20,
+    width: width-20,
     backgroundColor: '#fff',
     margin: 10,
     shadowColor: '#3d3d3d',
@@ -191,8 +190,7 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 1,
     },
-    borderColor: '#696969',
-    borderWidth: 1,
+    borderRadius: 10
   },
   eachMsg: {
     flexDirection: 'row',
@@ -203,6 +201,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     margin: 5,
+    marginRight: 15,
     alignSelf: 'flex-end',
   },
   userPic: {
@@ -227,7 +226,7 @@ const styles = StyleSheet.create({
   rightBlock: {
     width: 220,
     borderRadius: 5,
-    backgroundColor: '#97c163',
+    backgroundColor: '#BA9CFF',
     padding: 10,
     shadowColor: '#3d3d3d',
     shadowRadius: 2,

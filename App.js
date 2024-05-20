@@ -8,51 +8,101 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SignInScreen from './screens/SignInScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import DetailScreen from './screens/DetailScreen';
-import { Entypo } from '@expo/vector-icons';
-import ListProductScreen from './screens/ListProductScreen';
 import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
 import CheckoutScreen from './screens/CheckoutScreen';
+import { Image } from 'react-native';
+import FavoriteScreen from './screens/FavoriteScreen';
+import HistoryScreen from './screens/HistoryScreen';
+import SettingScreen from './screens/SettingScreen';
+import ListProductScreen from './screens/ListProductScreen';
 
 const Stack = createNativeStackNavigator();
 const Bottoms = createBottomTabNavigator();
 
 const GlobalStyles = {
   colors: {
-    backgroundColorPrimary200: '#773BFF',
+    backgroundColorActive: '#773BFF',
+    backgroundColorInactive: '#6C6C6C',
   },
 };
 
 const BottomTabs = () => {
   return (
     <Bottoms.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: GlobalStyles.colors.backgroundColorPrimary200,
-      }}>
+      screenOptions={({ route }) => ({
+        tabBarActiveTintColor: GlobalStyles.colors.backgroundColorActive,
+        tabBarInactiveTintColor: GlobalStyles.colors.backgroundColorInactive, 
+        tabBarLabelStyle: {
+          fontSize: 13,
+        },
+        tabBarIcon: ({ focused }) => {
+          let iconActive;
+          let iconInactive;
+
+          if (route.name === 'Home') {
+            iconActive = require('./assets/home_active.png');
+            iconInactive = require('./assets/home.png');
+          } else if (route.name === 'Chat') {
+            iconActive = require('./assets/chat_active.png');
+            iconInactive = require('./assets/chat.png');
+          } else if (route.name === 'Favorite') {
+          iconActive = require('./assets/heart_active.png');
+          iconInactive = require('./assets/heart.png');
+        } else if (route.name === 'History') {
+          iconActive = require('./assets/car_active.png');
+          iconInactive = require('./assets/car.png');
+        } else if (route.name === 'Setting') {
+          iconActive = require('./assets/account_active.png');
+          iconInactive = require('./assets/account.png');
+        }
+          return (
+            <Image
+              source={focused ? iconActive : iconInactive}
+              style={{ width: 24, height: 24}}
+            />
+          );
+        },
+      })}
+    >
       <Bottoms.Screen
         name='Home'
         component={HomeScreen}
         options={{
-          unmountOnBlur: true,
           tabBarLabel: 'Trang chủ',
-          tabBarLabelStyle: {
-            fontSize: 13,
-          },
           headerShown: false,
-          tabBarIcon: ({ size, color }) => <Entypo name="home" size={24} color="black" />,
+        }}
+      />
+      <Bottoms.Screen
+        name='Favorite'
+        component={FavoriteScreen}
+        options={{
+          tabBarLabel: 'Yêu thích',
+          title: 'Xe yêu thích'
+        }}
+      />
+      <Bottoms.Screen
+        name='History'
+        component={HistoryScreen}
+        options={{
+          tabBarLabel: 'Chuyến',
+          title: 'Lịch sử'
+          // headerShown: false,
         }}
       />
       <Bottoms.Screen
         name='Chat'
         component={ChatScreen}
         options={{
-          unmountOnBlur: true,
-          title: 'Chat với admin',
           tabBarLabel: 'Chat',
-          tabBarLabelStyle: {
-            fontSize: 13,
-          },
-          tabBarIcon: ({ size, color }) => <Entypo name="home" size={24} color="black" />,
+        }}
+      />
+      <Bottoms.Screen
+        name='Setting'
+        component={SettingScreen}
+        options={{
+          tabBarLabel: 'Tôi',
+          title: 'Tài khoản của tôi'
         }}
       />
     </Bottoms.Navigator>
@@ -80,6 +130,7 @@ export default function App() {
           component={DetailScreen}
           options={{
             title: 'Chi tiết sản phẩm',
+            headerBackTitleVisible: false,
           }}
         />
         <Stack.Screen
@@ -88,6 +139,14 @@ export default function App() {
           options={{
             headerBackTitleVisible: false,
             title: 'Xác nhận đặt xe',
+          }}
+        />
+        <Stack.Screen
+          name='List'
+          component={ListProductScreen}
+          options={{
+            headerBackTitleVisible: false,
+            headerShown: false
           }}
         />
       </Stack.Navigator>

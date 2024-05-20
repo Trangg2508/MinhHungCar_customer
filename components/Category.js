@@ -8,7 +8,7 @@ const itemWidth = (width - 40) / 4; // Subtract 40 for the horizontal padding an
 const data = [
   { id: 1, text: '4 chỗ', image: require('../assets/seat.png') },
   { id: 2, text: '7 chỗ', image: require('../assets/seat.png') },
-  { id: 3, text: 'Xăng', image: require('../assets/gas_station.png') },
+  { id: 3, text: 'Xăng', image: require('../assets/gasoline.png') },
   { id: 4, text: 'Điện', image: require('../assets/electric.png') },
   { id: 5, text: 'Diesel', image: require('../assets/oil_barrel.png') },
   { id: 6, text: 'Số sàn', image: require('../assets/transmission.png') },

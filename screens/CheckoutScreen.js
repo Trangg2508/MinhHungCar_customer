@@ -10,6 +10,11 @@ export default function CheckoutScreen() {
     const toggleSwitch = () => {
         setIsEnabled(previousState => !previousState);
     };
+
+    const [form, setForm] = useState({
+        emailNotifications: true,
+        pushNotifications: false,
+      });
     return (
         <View style={{ flex: 1 }}>
             <StatusBar barStyle="dark-content" />

@@ -35,7 +35,7 @@ const characters = [
     content: '4 chỗ'
   },
   {
-    img: require('../assets/gas_station.png'),
+    img: require('../assets/gasoline.png'),
     label: 'Nhiên liệu',
     content: 'Điện'
   },
